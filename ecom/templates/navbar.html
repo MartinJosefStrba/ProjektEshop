@@ -17,18 +17,30 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <div class="row">
 
-          <div class="col-lg-10 col-sm-12 pt-5">
+          <div class="col-lg-9 col-sm-12 pt-5">
             <form class="d-flex m-auto" role="search" id="search-pole">
               <input class="form-control me-2" type="search" placeholder="Najděte, co hledáte" aria-label="Search">
               <button class="btn btn-outline-dark" type="submit">Vyhledat</button>
             </form>
           </div>
           
-          <div class="col-lg-2 col-sm-12 pt-5">
+          <div class="col-lg-3 col-sm-12 pt-5">
           	<ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-md-between">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Odhlásit</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Profil</a>
               </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Přihlásit</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Registrace</a>
+              </li>
+            {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="#">Košík</a>
               </li>
