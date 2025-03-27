@@ -1,0 +1,52 @@
+* {
+    font-family: "Lexend Deca", sans-serif;
+    }
+
+#logo {
+	height: 96px;
+	width: 250px;
+}
+
+#search-pole {
+	width: 40vw;	
+}
+
+.hlavniPozadi {
+	background-color: rgba(241, 240, 240, 0.603);
+}
+
+.hlavniKontejner {
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+.navigace {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+.autorNapis {
+	font-size: 0.8em;
+}
+
+.cenaNapis {
+	font-size: 0.9em;
+}
+
+@media screen and (max-width: 991px) {
+    #search-pole {
+	width: 80vw;	
+    }
+
+    #logo {
+	height: 77px;
+	width: 200px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+
+	#carouselExampleAutoplaying {
+    		transform: translateX(5px);
+	}
+
+}

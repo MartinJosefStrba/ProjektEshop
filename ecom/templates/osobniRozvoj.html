@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="container text-center hlavniKontejner">
+    <div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 ms-xxl-2">
+        {% for product in products %}
+            {% if product.is_sale %}
+  
+                <div class="col">
+                    <div class="card d-flex flex-column mx-auto mb-3 mt-3" style="width: 10rem; height: 29rem;">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
+                        <div class="card-body flex-grow-1 d-flex flex-column justify-content-center">
+                            <div class="text-center">
+                                <h6 class="fw-bolder">{{ product.name }}</h6>
+                                <p class="cenaNapis">{{ product.price }} Kč</p>
+                                <p class="autorNapis">{{ product.author }}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" href="#">Zobrazit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+
+                <div class="col">
+                    <div class="card d-flex flex-column mx-auto mb-3 mt-3" style="width: 10rem; height: 29rem;">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
+                        <div class="card-body flex-grow-1 d-flex flex-column justify-content-center">
+                            <div class="text-center">
+                                <h6 class="fw-bolder">{{ product.name }}</h6>
+                                <p class="cenaNapis">{{ product.price }} Kč</p>
+                                <p class="autorNapis">{{ product.author }}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" href="#">Zobrazit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
