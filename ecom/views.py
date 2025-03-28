@@ -31,6 +31,10 @@ def beletrie(request):
     products = Product.objects.filter(category__name="Beletrie")
     return render(request, 'beletrie.html', {'products': products})
 
+def product(request, pk):
+     product = Product.objects.get(id=pk)
+     return render(request, 'product.html', {'product':product})
+
 
 def login_user(request):
     if request.method == "POST":
@@ -52,20 +56,18 @@ def logout_user(request):
     return redirect('home')
 
 def register_user(request):
-    form = SignUpForm()
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
-        
-        else:
-            return redirect(request, 'register.html')
-    
-    else:
-        return redirect(request, 'register.html', {'form':form})
+	form = SignUpForm()
+	if request.method == "POST":
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password1']
+			# log in user
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			return redirect('update_info')
+		else:
+			return redirect('register')
+	else:
+		return render(request, 'register.html', {'form':form})

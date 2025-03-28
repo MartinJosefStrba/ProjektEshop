@@ -10,6 +10,8 @@ urlpatterns = [
     path('naucna/', views.naucna, name='naucna'),
     path('beletrie/', views.beletrie, name='beletrie'),
 
+    path('product/<int:pk>', views.product, name='product'),
+
     path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),
     path('register/', views.register_user, name='register'),
