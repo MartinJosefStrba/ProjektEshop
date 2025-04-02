@@ -17,15 +17,28 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <div class="row">
 
-          <div class="col-lg-9 col-sm-12 pt-5">
+          <div class="col-lg-8 col-sm-12 pt-5">
             <form class="d-flex m-auto" role="search" id="search-pole">
               <input class="form-control me-2" type="search" placeholder="Najděte, co hledáte" aria-label="Search">
               <button class="btn btn-outline-dark" type="submit">Vyhledat</button>
             </form>
           </div>
           
-          <div class="col-lg-3 col-sm-12 pt-5">
+          <div class="col-lg-4 col-sm-12 pt-5">
           	<ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-md-between">
+              <li class="nav-item" style="width: 100px;">
+                <a class="nav-link position-relative" href="{% url 'cart_summary' %}">
+                  <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart3" viewBox="0 0 21 21">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                  </svg>
+                  Košík 
+                </span>
+                  <span class="position-absolute start-0 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6em;">
+                    0
+                  </span>
+                </a>
+              </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Odhlásit</a>
@@ -41,9 +54,7 @@
                 <a class="nav-link" href="{% url 'register' %}">Registrace</a>
               </li>
             {% endif %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'cart_summary' %}">Košík</a>
-              </li>
+
             </ul>
           </div>
 

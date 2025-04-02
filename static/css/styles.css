@@ -11,6 +11,11 @@
 	width: 35vw;	
 }
 
+.kosikTlacitko {
+	border: 1px solid black;
+	border-radius: 18px;
+}
+
 .hlavniPozadi {
 	background-color: rgba(241, 240, 240, 0.603);
 }
