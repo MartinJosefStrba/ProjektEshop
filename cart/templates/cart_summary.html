@@ -9,7 +9,7 @@
             {{ product }}
             {{ product.price }}
 
-            <select class="form-select" id="qty-cart">
+            <select class="form-select" id="select{{product.id}}">
                 {% for key, value in quantities.items %}
                     {% if key == product.id|slugify %}
                         <option selected>{{ value }}</option>
@@ -22,8 +22,19 @@
                 <option value="5">5</option>
               </select>
 
+            <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">
+                Upravit množství
+            </button>
+            <button type="button" data-index="{{product.id}}" class="btn btn-secondary delete-product">
+                Vymazat
+            </button>
+
+<br>
+            
         {% endfor %}
 
+        Celková cena: {{ totals }}
+        
     {% else %}
 
         V košíku nic není!
@@ -32,6 +43,52 @@
     
 </div>
 
+<script>
 
+$(document).on('click', '.update-cart', function(e){
+    e.preventDefault();
+    var productid = $(this).data('index');
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_update" %}',
+        data: {
+            product_id: $(this).data('index'),
+            product_qty: $('#select' + productid + ' option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+
+        success: function(json){
+            location.reload();
+        },
+
+        error: function(xhr, errmsg, err){
+
+        }
+    });
+})
+
+$(document).on('click', '.delete-product', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_delete" %}',
+        data: {
+            product_id: $(this).data('index'),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+
+        success: function(json){
+            location.reload();
+        },
+
+        error: function(xhr, errmsg, err){
+
+        }
+    });
+})
+
+</script>
 
 {% endblock %} 
