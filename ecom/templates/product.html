@@ -16,6 +16,13 @@
                     <p class="autorNapis my-lg-5">{{ product.author }}</p>
                     <p class="autorNapis">{{ product.description }}</p>
                 </div>
+                <select class="form-select" id="qty-cart">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
                 <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">
                   Do košíku
                 </button>
@@ -35,12 +42,15 @@
       url: '{% url "cart_add" %}',
       data: {
         product_id: $('#add-cart').val(),
+        product_qty: $('#qty-cart option:selected').text(),
         csrfmiddlewaretoken: '{{ csrf_token }}',
         action: 'post'
       },
       
       success: function(json){
-        console.log(json)
+        document.getElementById('cart_quantity')
+          textContent = json.qty
+        location.reload();
       },
       
       error: function(xhr, errmsg, err){

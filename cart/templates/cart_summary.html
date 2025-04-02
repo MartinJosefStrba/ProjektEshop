@@ -2,9 +2,36 @@
 {% block content %}
 
 <div class="container">
-    Tady bude košík
+    {% if cart_products %}
+    
+        {% for product in cart_products %}
+
+            {{ product }}
+            {{ product.price }}
+
+            <select class="form-select" id="qty-cart">
+                {% for key, value in quantities.items %}
+                    {% if key == product.id|slugify %}
+                        <option selected>{{ value }}</option>
+                    {% endif %}
+                {% endfor %}
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
+        {% endfor %}
+
+    {% else %}
+
+        V košíku nic není!
+
+    {% endif %}
+    
 </div>
 
 
 
-{% endblock %}
+{% endblock %} 
