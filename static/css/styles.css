@@ -7,17 +7,29 @@
 	width: 250px;
 }
 
-#search-pole {
-	width: 35vw;	
+.vedlejsiKontejner .col-md-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.kosikTlacitko {
-	border: 1px solid black;
-	border-radius: 18px;
+.vedlejsiKontejner img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
 }
 
-.hlavniPozadi {
-	background-color: rgba(241, 240, 240, 0.603);
+.vedlejsiKontejner {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+.autorNapisKosik {
+	font-size: 0.7em;
+}
+
+.cenaNapisKosik {
+	font-size: 0.8em;
 }
 
 .hlavniKontejner {
@@ -25,9 +37,14 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
 }
 
-.vedlejsiKontejner {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+.kosikTlacitko {
+	font-size: x-small;
 }
+
+.hlavniPozadi {
+	background-color: rgba(241, 240, 240, 0.603);
+}
+
 
 .navigace {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
@@ -41,16 +58,33 @@
 	font-size: 0.9em;
 }
 
-@media screen and (max-width: 991px) {
-    #search-pole {
-	width: 80vw;	
-    }
+.kosikKontejner img {   
+    height: 133px;
+    
+}
 
+.kosikKontejner {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+  max-width: 60vw;
+  max-height: 190px;
+}
+
+@media screen and (max-width: 768px) {
+  .kosikKontejner {
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+    max-width: 80vw;
+    max-height: 325px;
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
     #logo {
 	height: 77px;
 	width: 200px;
     }
 }
+
 
 @media screen and (min-width: 1400px) {
 

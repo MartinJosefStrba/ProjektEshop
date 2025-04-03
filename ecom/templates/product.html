@@ -6,7 +6,7 @@
     <div class="card mb-1 mx-auto vedlejsiKontejner" style="max-width: 60vw;">
         <div class="row g-0">
           <div class="col-md-4 p-2">
-            <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+            <img src="{{ product.image.url }}" class="img-fluid" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -16,6 +16,9 @@
                     <p class="autorNapis my-lg-5">{{ product.author }}</p>
                     <p class="autorNapis">{{ product.description }}</p>
                 </div>
+
+            <div class="row g-0">
+              <div class="col-3 offset-2">
                 <select class="form-select" id="qty-cart">
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -23,9 +26,14 @@
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">
+              </div>
+              <div class="col-7 d-flex justify-content-center">
+                <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart" style="max-width: 50vw;">
                   Do košíku
                 </button>
+              </div>
+            </div>
+              
             </div>
           </div>
         </div>

@@ -3,43 +3,81 @@
 
 <div class="container">
     {% if cart_products %}
-    
-        {% for product in cart_products %}
-
-            {{ product }}
-            {{ product.price }}
-
-            <select class="form-select" id="select{{product.id}}">
+    {% for product in cart_products %}
+  
+    <div class="card mb-1 p-2 mx-auto kosikKontejner">
+      <div class="row g-0">
+  
+        <div class="col-12 col-md-2 col-lg-3 col-xl-4 text-center align-self-center">
+          <img src="{{ product.image.url }}" class="img-fluid" alt="...">
+        </div>
+  
+        <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+  
+          <div class="row g-0 text-center">
+            <div class="col-12 ">
+              <h6 class="fw-bolder">{{ product.name }}</h6>
+            </div>
+          </div>
+  
+          <div class="row g-0 text-center">
+            <div class="col-12">
+              <p class="cenaNapisKosik">{{ product.price }} Kč</p>
+            </div>
+          </div>
+  
+          <div class="row g-0 text-center">
+            <div class="col-12">
+              <p class="autorNapisKosik">{{ product.author }}</p>
+            </div>
+          </div>
+  
+          <div class="row g-0">
+            <div class="col-12 col-md-2 offset-md-2 align-self-center">
+              <select class="form-select form-select-sm" id="select{{product.id}}">
                 {% for key, value in quantities.items %}
-                    {% if key == product.id|slugify %}
-                        <option selected>{{ value }}</option>
-                    {% endif %}
+                  {% if key == product.id|slugify %}
+                    <option selected>{{ value }}</option>
+                  {% endif %}
                 {% endfor %}
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
               </select>
-
-            <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">
-                Upravit množství
-            </button>
-            <button type="button" data-index="{{product.id}}" class="btn btn-secondary delete-product">
-                Vymazat
-            </button>
-
-<br>
-            
-        {% endfor %}
-
+            </div>
+            <div class="col-12 col-md-8 d-flex justify-content-center">
+              <button type="button" data-index="{{product.id}}" class="btn btn-secondary btn-sm mx-2 my-2 update-cart">
+                  Upravit
+              </button>
+              <button type="button" data-index="{{product.id}}" class="btn btn-secondary btn-sm mx-2 my-2 delete-product">
+                  Smazat
+              </button>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  
+    {% endfor %}
+  
+    <div class="container my-3 py-5 text-center hlavniKontejner">
         Celková cena: {{ totals }}
-        
-    {% else %}
-
-        V košíku nic není!
-
-    {% endif %}
+    </div>
+  
+    
+  {% else %}
+  
+    <div class="container my-3 py-5 text-center hlavniKontejner">
+      V košíku nic není..
+    </div>
+  
+  {% endif %}
+  
+  
     
 </div>
 
@@ -92,3 +130,8 @@ $(document).on('click', '.delete-product', function(e){
 </script>
 
 {% endblock %} 
+
+
+
+
+
