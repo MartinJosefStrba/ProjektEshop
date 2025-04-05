@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <form method="POST" action="{% url 'update_info' %}">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-secondary">
+            Upravit
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}

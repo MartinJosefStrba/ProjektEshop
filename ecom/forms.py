@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
+from .models import Profile
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Emailová adresa'}))
@@ -50,6 +51,19 @@ class UpdateUserForm(UserChangeForm):
 		self.fields['username'].label = ''
 		self.fields['username'].help_text = '<span class="form-text text-muted"><small>Povinné. 150 nebo méně symbolů. Písmena, číslice a pouze @/./+/-/_.</small></span>'
 
+class UserInfoForm(forms.ModelForm):
+	phone = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Telefon'}), required=False)
+	address1 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adresa 1'}), required=False)
+	address2 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adresa 2'}), required=False)
+	city = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Město'}), required=False)
+	state = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Stát'}), required=False)
+	zipcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'PSČ'}), required=False)
+	country = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Země'}), required=False)
+
+
+	class Meta:
+		model = Profile
+		fields = ('phone', 'address1', 'address2', 'city', 'state', 'zipcode', 'country', )
 
 class ChangePasswordForm(SetPasswordForm):
 	class Meta:
