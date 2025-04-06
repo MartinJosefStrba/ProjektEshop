@@ -35,9 +35,9 @@ class UpdateUserForm(UserChangeForm):
 
 	password = None
 
-	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Emailová adresa'}), required=False)
-	first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Křestní jméno'}), required=False)
-	last_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Přijmení'}), required=False)
+	email = forms.EmailField(label="Emailová adresa", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Emailová adresa'}), required=False)
+	first_name = forms.CharField(label="Křestní jméno", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Křestní jméno'}), required=False)
+	last_name = forms.CharField(label="Přijmení", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Přijmení'}), required=False)
 
 	class Meta:
 		model = User
@@ -48,17 +48,17 @@ class UpdateUserForm(UserChangeForm):
 
 		self.fields['username'].widget.attrs['class'] = 'form-control'
 		self.fields['username'].widget.attrs['placeholder'] = 'Uživatelské jméno'
-		self.fields['username'].label = ''
+		self.fields['username'].label = 'Uživatelské jméno'
 		self.fields['username'].help_text = '<span class="form-text text-muted"><small>Povinné. 150 nebo méně symbolů. Písmena, číslice a pouze @/./+/-/_.</small></span>'
 
 class UserInfoForm(forms.ModelForm):
-	phone = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Telefon'}), required=False)
-	address1 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adresa 1'}), required=False)
-	address2 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adresa 2'}), required=False)
-	city = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Město'}), required=False)
-	state = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Stát'}), required=False)
-	zipcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'PSČ'}), required=False)
-	country = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Země'}), required=False)
+	phone = forms.CharField(label="Telefonní číslo", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Telefon'}), required=False)
+	address1 = forms.CharField(label="Adresa", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adresa 1'}), required=False)
+	address2 = forms.CharField(label="Adresa 2", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adresa 2'}), required=False)
+	city = forms.CharField(label="Město", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Město'}), required=False)
+	state = forms.CharField(label="Stát", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Stát'}), required=False)
+	zipcode = forms.CharField(label="PSČ", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'PSČ'}), required=False)
+	country = forms.CharField(label="Země", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Země'}), required=False)
 
 
 	class Meta:
@@ -75,10 +75,10 @@ class ChangePasswordForm(SetPasswordForm):
 
 		self.fields['new_password1'].widget.attrs['class'] = 'form-control'
 		self.fields['new_password1'].widget.attrs['placeholder'] = 'Nové heslo'
-		self.fields['new_password1'].label = ''
+		self.fields['new_password1'].label = 'Nové heslo'
 		self.fields['new_password1'].help_text = '<ul class="form-text text-muted small"><li>Heslo se nesmí příliž podobat osobním informacím</li><li>Heslo musí být alespoň 8 znaků dlouhé</li><li>Heslo nemůže být běžně používané heslo (např. 12345 apod.)</li><li>Heslo nemůže být jen z čísel</li></ul>'
 
 		self.fields['new_password2'].widget.attrs['class'] = 'form-control'
 		self.fields['new_password2'].widget.attrs['placeholder'] = 'Potvrdit heslo'
-		self.fields['new_password2'].label = ''
+		self.fields['new_password2'].label = 'Heslo ještě jednou'
 		self.fields['new_password2'].help_text = '<span class="form-text text-muted"><small>Zadejte znovu nové heslo pro ověření</small></span>'

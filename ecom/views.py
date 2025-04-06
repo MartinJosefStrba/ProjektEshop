@@ -6,7 +6,7 @@ from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
 from django import forms
 from .models import Product, Profile
 from django.contrib import messages
-
+from django.db.models import Q
 
 def home(request):
     products = Product.objects.all()
@@ -36,6 +36,18 @@ def product(request, pk):
      product = Product.objects.get(id=pk)
      return render(request, 'product.html', {'product':product})
 
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+
+        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched) | Q(author__icontains=searched))
+
+        if not searched:
+            return render(request, "search.html", {})
+        else:
+             return render(request, "search.html", {'searched':searched})
+    else:
+         return render(request, "search.html", {})
 
 def login_user(request):
     if request.method == "POST":

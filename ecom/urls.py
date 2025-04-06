@@ -11,6 +11,7 @@ urlpatterns = [
     path('beletrie/', views.beletrie, name='beletrie'),
 
     path('product/<int:pk>', views.product, name='product'),
+    path('search/', views.search, name='search'),
 
     path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),

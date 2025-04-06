@@ -2,16 +2,19 @@
 {% block content %}
 
 <div class="container">
-    <form method="POST" action="{% url 'update_info' %}">
-        {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col-8 col-md-7 col-lg-5 text-center hlavniKontejner p-3">
+            <form method="POST" action="{% url 'update_info' %}">
+                {% csrf_token %}
 
-        {{ form.as_p }}
+                {{ form.as_p }}
 
-        <button type="submit" class="btn btn-secondary">
-            Upravit
-        </button>
-    </form>
-
+                <button type="submit" class="btn btn-secondary">
+                    Upravit
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

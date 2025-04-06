@@ -18,10 +18,15 @@
         <div class="row">
 
           <div class="col-xl-8 col-lg-7 col-sm-12 pt-5">
-            <form class="d-flex w-100 m-auto" role="search">
-              <input class="form-control me-2" type="search" placeholder="Najděte, co hledáte" aria-label="Search">
-              <button class="btn btn-outline-dark" type="submit">Vyhledat</button>
-            </form>
+
+
+            <form method="POST" action="{% url 'search' %}" class="d-flex w-100 m-auto" role="search">
+              {% csrf_token %}
+              <input type="text" class="form-control me-2" placeholder="Vyhledat produkt" name="searched">
+              <button type="submit" class="btn btn-secondary">
+                  Vyhledat
+              </button>
+          </form>
           </div>
           
           <div class="col-xl-4 col-lg-5 col-sm-12 pt-5">
@@ -44,7 +49,7 @@
                 <a class="nav-link" href="{% url 'logout' %}">Odhlásit</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Profil</a>
+                <a class="nav-link" href="{% url 'update_user' %}">Profil</a>
               </li>
             {% else %}
               <li class="nav-item">
