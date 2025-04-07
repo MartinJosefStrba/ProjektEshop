@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            {% for product in cart_products %}
+  
+            <div class="card mb-1 p-2 mx-auto kosikKontejner">
+              <div class="row g-0">
+          
+                <div class="col-12 col-md-2 col-lg-3 col-xl-4 text-center align-self-center">
+                  <img src="{{ product.image.url }}" class="img-fluid" alt="...">
+                </div>
+          
+                <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+          
+                  <div class="row g-0 text-center">
+                    <div class="col-12 ">
+                      <h6 class="fw-bolder">{{ product.name }}</h6>
+                    </div>
+                  </div>
+          
+                  <div class="row g-0 text-center">
+                    <div class="col-12">
+                      <p class="cenaNapisKosik">{{ product.price }} Kč</p>
+                    </div>
+                  </div>
+          
+                  <div class="row g-0 text-center">
+                    <div class="col-12">
+                      <p class="autorNapisKosik">{{ product.author }}</p>
+                    </div>
+                  </div>
+          
+                  <div class="row g-0">
+                    <div class="col-12 col-md-2 offset-md-2 align-self-center">
+
+                        {% for key, value in quantities.items %}
+                          {% if key == product.id|slugify %}
+                            <p selected>Množství: {{ value }}</p>
+                          {% endif %}
+                        {% endfor %}
+
+                    </div>
+                  </div>
+          
+                </div>
+          
+              </div>
+            </div>
+          
+            {% endfor %}
+
+            <div class="container card mb-1 p-3 kosikKontejner">
+                Celkem:
+                {{ totals }}
+            
+                <a class="btn btn-secondary" href="{% url 'cart_summary' %}">
+                    Upravit položky
+                </a>
+            </div>
+        </div>
+        <div class="col-5 hlavniKontejner p-3">
+                    <h5>Doručovací informace:</h5>
+                    <form>
+                        <div class="mb-3">
+                          <label class="form-label">Celé jméno</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_full_name.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Email</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_email.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Adresa 1</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_address1.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Adresa 2</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_address2.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Město</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_city.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Stát</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_state.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">PSČ</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_zipcode.value }}" disabled readonly>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Země</label>
+                          <input type="text" class="form-control" value="{{ shipping_form.shipping_country.value }}" disabled readonly>
+                        </div>
+                      </form>
+                      <a href="{% url 'update_info' %}" class="btn btn-secondary">
+                        Změnit údaje
+                      </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
