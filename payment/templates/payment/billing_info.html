@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+	<div class="row justify-content-center">
+		<div class="col-5 text-center hlavniKontejner p-3">
+			<h5>Platební údaje:</h5>
+
+				{{ billing_form.as_p }}
+
+			<button class="btn btn-success" type="submit">
+				Zaplatit
+			</button>
+		</div>
+		<div class="col-3 offset-1 text-center hlavniKontejner p-4" style="height: 200px;">
+			<h5>Celkem k zaplacení: {{ totals }}</h5>
+
+			<a class="btn btn-secondary mt-4" href="{% url 'cart_summary' %}">
+				Zpět do košíku
+			</a>
+
+			<a class="btn btn-secondary mt-2" href="{% url 'checkout' %}">
+				Zpět k pokladně
+			</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

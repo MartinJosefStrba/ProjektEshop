@@ -33,12 +33,12 @@
                     </div>
                   </div>
           
-                  <div class="row g-0">
-                    <div class="col-12 col-md-2 offset-md-2 align-self-center">
+                  <div class="row g-0 text-center">
+                    <div class="col-12 col-md-12">
 
                         {% for key, value in quantities.items %}
                           {% if key == product.id|slugify %}
-                            <p selected>Množství: {{ value }}</p>
+                            <p class="badge text-bg-success" selected>Množství: {{ value }}</p>
                           {% endif %}
                         {% endfor %}
 
@@ -52,18 +52,26 @@
           
             {% endfor %}
 
-            <div class="container card mb-1 p-3 kosikKontejner">
-                Celkem:
-                {{ totals }}
-            
-                <a class="btn btn-secondary" href="{% url 'cart_summary' %}">
-                    Upravit položky
-                </a>
+            <div class="container card mb-1 mt-5 p-3 kosikKontejner">
+                <div class="row">
+                  <div class="col-3 mt-2">
+                    <h5>
+                      Celkem: {{ totals }}
+                    </h5>
+                  </div>
+
+                  <div class="col-3 offset-6">
+                    <a class="btn btn-secondary" href="{% url 'cart_summary' %}">
+                        Upravit položky
+                    </a>
+                  </div>
+                </div>
             </div>
         </div>
         <div class="col-5 hlavniKontejner p-3">
                     <h5>Doručovací informace:</h5>
-                    <form>
+                    <form id="dorucovaciInfo" method="POST" action="{% url 'billing_info' %}">
+                        {% csrf_token %}
                         <div class="mb-3">
                           <label class="form-label">Celé jméno</label>
                           <input type="text" class="form-control" value="{{ shipping_form.shipping_full_name.value }}" disabled readonly>
@@ -103,10 +111,20 @@
                           <label class="form-label">Země</label>
                           <input type="text" class="form-control" value="{{ shipping_form.shipping_country.value }}" disabled readonly>
                         </div>
+
                       </form>
-                      <a href="{% url 'update_info' %}" class="btn btn-secondary">
-                        Změnit údaje
-                      </a>
+                      <div class="row text-center">
+                        <div class="col-6">
+                            <a href="{% url 'update_info' %}" class="btn btn-secondary">
+                              Změnit údaje
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <button form="dorucovaciInfo" class="btn btn-success" type="submit">
+                              Pokračovat k platbě
+                            </button>
+                        </div>
+                      </div>
         </div>
 
     </div>

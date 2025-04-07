@@ -51,7 +51,7 @@
               <button type="button" data-index="{{product.id}}" class="btn btn-secondary btn-sm mx-2 my-2 update-cart">
                   Upravit
               </button>
-              <button type="button" data-index="{{product.id}}" class="btn btn-secondary btn-sm mx-2 my-2 delete-product">
+              <button type="button" data-index="{{product.id}}" class="btn btn-danger btn-sm mx-2 my-2 delete-product">
                   Smazat
               </button>
             </div>
@@ -64,14 +64,22 @@
   
     {% endfor %}
   
-    <div class="container my-3 py-5 text-center hlavniKontejner">
-        Celková cena: {{ totals }}
-        <br>
-        <a class="btn btn-secondary" href="{% url 'checkout' %}">
-          K pokladně
-        </a>
-    </div>
   
+    <div class="container card mt-3 p-3 kosikKontejner">
+      <div class="row text-center">
+        <div class="col-6 mt-2">
+          <h5>
+            Celkem: {{ totals }}
+          </h5>
+        </div>
+
+        <div class="col-6">
+          <a class="btn btn-success" href="{% url 'checkout' %}">
+              K pokladně
+          </a>
+        </div>
+      </div>
+  </div>
     
   {% else %}
   
