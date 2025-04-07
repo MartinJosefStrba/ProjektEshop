@@ -2,21 +2,23 @@
 {% block content %}
 
 <div class="container">
-
+  <div class="row justify-content-center">
+    <div class="col-8 col-md-7 col-lg-5 text-center hlavniKontejner p-3">
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="mb-3">
           <label for="exampleInputName" class="form-label">Zadejte své přhlašovací údaje</label>
           <input type="text" name="username" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Heslo</label>
           <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+          <div id="emailHelp" class="form-text">Vaše heslo není nikde sdíleno</div>
         </div>
         <button type="submit" class="btn btn-primary">Přihlásit</button>
       </form>
-
+    </div>
+    </div>
 </div>
 
 
