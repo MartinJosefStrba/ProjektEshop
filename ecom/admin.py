@@ -2,9 +2,14 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from .models import Category, Customer, Product, Order, Profile
 
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'author',)
+    search_fields = ('name', 'author',)
+    ordering = ('name',)   
+
 admin.site.register(Category)
 admin.site.register(Customer)
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Order)
 admin.site.register(Profile)
 

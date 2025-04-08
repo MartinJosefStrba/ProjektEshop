@@ -87,7 +87,7 @@ def process_order(request):
 			current_user = Profile.objects.filter(user__id=request.user.id)
 			current_user.update(old_cart="")
 	
-			return redirect('home')
+			return redirect('payment_success')
 		
 		else:
 			create_order = Order(full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
@@ -110,7 +110,7 @@ def process_order(request):
 				if key == "session_key":
 					del request.session[key]
 
-			return redirect('home')
+			return redirect('payment_success')
 
 	else:
 		return redirect('home')
