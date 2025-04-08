@@ -4,7 +4,7 @@ from payment.models import ShippingAddress, Order, OrderItem
 from payment.forms import ShippingForm, PaymentForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from ecom.models import Product
+from ecom.models import Product, Profile
 
 def payment_success(request):
     return render(request, "payment/payment_success.html", {})
@@ -79,6 +79,13 @@ def process_order(request):
 					if int(key) == product.id:
 						create_order_item = OrderItem(order_id=order_id, product_id=product_id, user=user, quantity=value, price=price)
 						create_order_item.save()
+			
+			for key in list(request.session.keys()):
+				if key == "session_key":
+					del request.session[key]
+
+			current_user = Profile.objects.filter(user__id=request.user.id)
+			current_user.update(old_cart="")
 	
 			return redirect('home')
 		
@@ -98,6 +105,10 @@ def process_order(request):
 					if int(key) == product.id:
 						create_order_item = OrderItem(order_id=order_id, product_id=product_id, quantity=value, price=price)
 						create_order_item.save()
+			
+			for key in list(request.session.keys()):
+				if key == "session_key":
+					del request.session[key]
 
 			return redirect('home')
 

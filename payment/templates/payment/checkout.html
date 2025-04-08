@@ -71,6 +71,7 @@
         <div class="col-5 hlavniKontejner p-3">
                     <h5>Doručovací informace:</h5>
                     <!-- Formulář pro zobtazování dat -->
+                  {% if user.is_authenticated %}   
                     <form method="POST" action="{% url 'billing_info' %}">
                         {% csrf_token %}
                         <div class="mb-3">
@@ -112,8 +113,66 @@
                           <label class="form-label">Země</label>
                           <input type="text" class="form-control" value="{{ shipping_form.shipping_country.value }}" disabled readonly>
                         </div>
-
                       </form>
+
+                      <!-- Skrytý formulář pro odesílání dat -->
+                      <form id="dorucovaciInfo" method="POST" action="{% url 'billing_info' %}">
+                        {% csrf_token %}                
+                        <input type="hidden" name="shipping_full_name" value="{{ shipping_form.shipping_full_name.value }}">
+                        <input type="hidden" name="shipping_email" value="{{ shipping_form.shipping_email.value }}">
+                        <input type="hidden" name="shipping_address1" value="{{ shipping_form.shipping_address1.value }}">
+                        <input type="hidden" name="shipping_address2" value="{{ shipping_form.shipping_address2.value }}">
+                        <input type="hidden" name="shipping_city" value="{{ shipping_form.shipping_city.value }}">
+                        <input type="hidden" name="shipping_state" value="{{ shipping_form.shipping_state.value }}">
+                        <input type="hidden" name="shipping_zipcode" value="{{ shipping_form.shipping_zipcode.value }}">
+                        <input type="hidden" name="shipping_country" value="{{ shipping_form.shipping_country.value }}">
+                      </form>  
+
+                    {% else %}  
+                    <form id="dorucovaciInfo" method="POST" action="{% url 'billing_info' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                          <label class="form-label">Celé jméno</label>
+                          <input name="shipping_full_name" type="text" class="form-control" value="{{ shipping_form.shipping_full_name.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Email</label>
+                          <input name="shipping_email" type="text" class="form-control" value="{{ shipping_form.shipping_email.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Adresa 1</label>
+                          <input name="shipping_address1" type="text" class="form-control" value="{{ shipping_form.shipping_address1.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Adresa 2</label>
+                          <input name="shipping_address2" type="text" class="form-control" value="{{ shipping_form.shipping_address2.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Město</label>
+                          <input name="shipping_city" type="text" class="form-control" value="{{ shipping_form.shipping_city.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Stát</label>
+                          <input name="shipping_state" type="text" class="form-control" value="{{ shipping_form.shipping_state.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">PSČ</label>
+                          <input name="shipping_zipcode" type="text" class="form-control" value="{{ shipping_form.shipping_zipcode.value }}">
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label">Země</label>
+                          <input name="shipping_country" type="text" class="form-control" value="{{ shipping_form.shipping_country.value }}">
+                        </div>
+                      </form>
+                    {% endif %}
+
                       <div class="row text-center">
                         <div class="col-6">
                             <a href="{% url 'update_info' %}" class="btn btn-secondary">
@@ -125,22 +184,7 @@
                               Pokračovat k platbě
                             </button>
                         </div>
-                      </div>
-
-                      <!-- Skrytý formulář pro odesílání dat -->
-                      <form id="dorucovaciInfo" method="POST" action="{% url 'billing_info' %}">
-                        {% csrf_token %}
-                        
-                        <input type="hidden" name="shipping_full_name" value="{{ shipping_form.shipping_full_name.value }}">
-                        <input type="hidden" name="shipping_email" value="{{ shipping_form.shipping_email.value }}">
-                        <input type="hidden" name="shipping_address1" value="{{ shipping_form.shipping_address1.value }}">
-                        <input type="hidden" name="shipping_address2" value="{{ shipping_form.shipping_address2.value }}">
-                        <input type="hidden" name="shipping_city" value="{{ shipping_form.shipping_city.value }}">
-                        <input type="hidden" name="shipping_state" value="{{ shipping_form.shipping_state.value }}">
-                        <input type="hidden" name="shipping_zipcode" value="{{ shipping_form.shipping_zipcode.value }}">
-                        <input type="hidden" name="shipping_country" value="{{ shipping_form.shipping_country.value }}">
-
-                      </form>         
+                      </div>       
         </div>
     </div>
 </div>
