@@ -150,7 +150,6 @@ def update_info(request):
 
             return redirect('home')
         
-        return render(request, "update_info.html", {'form':form, 'shipping_form':shipping_form})
+        return render(request, "update_info.html", {'form': form, 'shipping_form': shipping_form})
     else:
         return redirect('home')
-
