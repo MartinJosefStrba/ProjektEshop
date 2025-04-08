@@ -5,19 +5,19 @@
     <form method="POST" action="{% url 'update_info' %}">
         {% csrf_token %}
         <div class="row">
-            <div class="col-5 text-center hlavniKontejner p-3">
+            <div class="col-12 col-md-5 text-center hlavniKontejner p-3">
                 <strong>Fakturační údaje</strong>
                 {{ form.as_p }}
             </div>
 
-            <div class="col-5 offset-2 text-center hlavniKontejner p-3">
+            <div class="col-12 col-md-5 offset-md-2 text-center hlavniKontejner p-3 mt-3 mt-md-0">
                 <strong>Doručovací informace</strong>
                 {{ shipping_form.as_p }}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 text-center hlavniKontejner p-3 my-2">
+            <div class="col-12 text-center hlavniKontejner p-3 mt-5 mt-lg-3 my-2">
                 <button type="submit" class="btn btn-secondary">
                     Upravit informace
                 </button>

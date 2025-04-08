@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-7">
+        <div class="col-lg-7 col-md-8 col-12">
             {% for product in cart_products %}
   
             <div class="card mb-1 p-2 mx-auto kosikKontejner">
@@ -52,15 +52,15 @@
           
             {% endfor %}
 
-            <div class="container card mb-1 mt-5 p-3 kosikKontejner">
-                <div class="row">
-                  <div class="col-3 mt-2">
+            <div class="container card mb-3 mb-md-1 mt-5 p-3 kosikKontejner">
+                <div class="row text-center">
+                  <div class="col-12 col-md-6 col-lg-4 col-xl-4 mt-2">
                     <h5>
                       Celkem: {{ totals }}
                     </h5>
                   </div>
 
-                  <div class="col-3 offset-6">
+                  <div class="col-12 col-md-6 col-lg-4 offset-lg-4 col-xl-4 offset-xl-4">
                     <a class="btn btn-secondary" href="{% url 'cart_summary' %}">
                         Upravit položky
                     </a>
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-5 hlavniKontejner p-3">
+        <div class="col-lg-5 col-md-4 col-12 hlavniKontejner p-3">
                     <h5>Doručovací informace:</h5>
                     <!-- Formulář pro zobtazování dat -->
                   {% if user.is_authenticated %}   
@@ -174,12 +174,12 @@
                     {% endif %}
 
                       <div class="row text-center">
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6">
                             <a href="{% url 'update_info' %}" class="btn btn-secondary">
                               Změnit údaje
                             </a>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6 mt-lg-0 mt-2">
                             <button form="dorucovaciInfo" class="btn btn-success" type="submit">
                               Pokračovat k platbě
                             </button>

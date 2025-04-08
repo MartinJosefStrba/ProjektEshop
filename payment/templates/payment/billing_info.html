@@ -4,7 +4,7 @@
 <div class="container">
 
 	<div class="row justify-content-center">
-		<div class="col-5 text-center hlavniKontejner p-3">
+		<div class="col-12 col-md-6 col-lg-5 text-center hlavniKontejner p-3">
 			<h5>Platební údaje:</h5>
 				<form id="platba" method="POST" action="{% url 'process_order' %}">
 					{% csrf_token %}
@@ -14,14 +14,14 @@
 				Zaplatit
 			</button>
 		</div>
-		<div class="col-3 offset-1 text-center hlavniKontejner p-4" style="height: 200px;">
+		<div class="col-12 col-md-4 offset-md-1 col-lg-3 offset-lg-1 text-center hlavniKontejner p-4 mt-5 mt-md-0" style="height: 200px;">
 			<h5>Celkem k zaplacení: {{ totals }}</h5>
 
-			<a class="btn btn-secondary mt-4" href="{% url 'cart_summary' %}">
+			<a class="btn btn-secondary mt-0 mt-md-3" href="{% url 'cart_summary' %}">
 				Zpět do košíku
 			</a>
 
-			<a class="btn btn-secondary mt-2" href="{% url 'checkout' %}">
+			<a class="btn btn-secondary mt-0 mt-md-2" href="{% url 'checkout' %}">
 				Zpět k pokladně
 			</a>
 		</div>
