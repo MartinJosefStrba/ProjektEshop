@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="mt-4 col-8 col-md-7 col-lg-5 text-center hlavniKontejner p-3">
+
+            <h4>Přihlášení k odběru novinek:</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-success" type="submit">Odebírat</button>
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <h6>{{ message }}</h6>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

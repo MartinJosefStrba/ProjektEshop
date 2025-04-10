@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Category, Customer, Product, Order, Profile
+from .models import Category, Customer, Product, Order, Profile, Subscriber
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'author',)
@@ -21,5 +21,13 @@ class UserAdmin(admin.ModelAdmin):
     field = ["username", "first_name", "last_name", "email"]
     inlines = [ProfileInline]
 
+
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email', 'date_subscribed')
+    search_fields = ('email',)
+
+admin.site.register(Subscriber, SubscriberAdmin)
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+

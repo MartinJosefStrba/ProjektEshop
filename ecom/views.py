@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, SubscriberForm
 from django import forms
 from .models import Product, Profile
 from django.contrib import messages
@@ -11,6 +11,20 @@ import json
 from cart.cart import Cart
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
+
+def subscribe_view(request):
+    if request.method == 'POST':
+          form = SubscriberForm(request.POST)
+          if form.is_valid():
+               form.save()
+               messages.success(request, 'Děkujem za příhlášení k odběru')
+               return redirect('subscribe')
+          else:
+               messages.success(request, 'Tento mail je již přihlášen k odběru')
+               return redirect('subscribe')
+    else:
+         form = SubscriberForm()
+    return render(request, 'subscribe.html', {'form':form})
 
 def home(request):
     products = Product.objects.all()
